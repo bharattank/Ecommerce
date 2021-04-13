@@ -32,11 +32,9 @@ if(isset($_POST['submit'])) {
     
     $txnid = substr(hash('sha256', mt_rand() . microtime()), 0, 20);
     
-    $sql_insert_order = "INSERT INTO `order`(`user_id`, `address`, `city`, `pincode`, `payment_type`, `total_price`, `payment_status`, `order_status`,`txnid`, `added_on`) 
-    VALUES ('$user_id','$address','$city','$pincode','$payment_type','$total_price','$payment_status','$order_status',$txnid,'$added_on')";
+    $sql_insert_order = "INSERT INTO `order`(`user_id`, `address`, `city`, `pincode`, `payment_type`, `total_price`, `payment_status`, `order_status`,`txnid`, `added_on`,`mihpayid`,`payu_status`) 
+    VALUES ('$user_id','$address','$city','$pincode','$payment_type','$total_price','$payment_status','$order_status','$txnid','$added_on','','')";
     mysqli_query($conn,$sql_insert_order);
-    echo $sql_insert_order;
-    exit;
 
     $order_id = mysqli_insert_id($conn);
 

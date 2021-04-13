@@ -81,7 +81,12 @@ if(isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN'] == 'yes') {
 									</div>
 									<div class="single-contact-form">
 										<div class="contact-box name">
-											<input type="email" name="email" id="email" placeholder="Your Email*" style="width:100%">
+											<input type="email" name="email" id="email" placeholder="Your Email*" style="width:45%">
+											<button type="button" class="fv-btn email_sent_otp hieght_60px" onclick="email_sent_otp()">Send OTP</button>
+
+											<input type="text" id="email_otp" placeholder="OTP" style="width:45%" class="email_verify_otp">
+											<button type="button" class="fv-btn email_verify_otp hieght_60px" onclick="email_verify_otp()">Verify OTP</button>
+											<span id="email_otp_result"></span>
 										</div>
 										<span class="field_error" id="email_error"></span>
 									</div>
@@ -116,5 +121,16 @@ if(isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN'] == 'yes') {
         <!-- End Banner Area -->
     </div>
     <!-- Body main wrapper end -->
+	<script>
+		function email_sent_otp() {
+			jQuery('#email').attr('disabled',true);
+			jQuery('.email_varify_otp').show();
+			jQuery('.email_sent_otp').hide();
+		}
+		function email_verify_otp() {
+			jQuery('.email_verify_otp').hide();
+			jQuery('#email_otp_result').html('Email id verified');
+		}
+	</script>
 
 <?php require 'footer.php'; ?>
