@@ -81,7 +81,7 @@ if(isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN'] == 'yes') {
 									</div>
 									<div class="single-contact-form">
 										<div class="contact-box name">
-											<input type="email" name="email" id="email" placeholder="Your Email*" style="width:45%">
+											<input type="email" name="email" id="email" placeholder="Your Email*" style="width:66%">
 											<button type="button" class="fv-btn email_sent_otp hieght_60px" onclick="email_sent_otp()">Send OTP</button>
 
 											<input type="text" id="email_otp" placeholder="OTP" style="width:45%" class="email_verify_otp">
@@ -92,7 +92,12 @@ if(isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN'] == 'yes') {
 									</div>
 									<div class="single-contact-form">
 										<div class="contact-box name">
-											<input type="text" name="mobile" id="mobile" placeholder="Your Mobile*" style="width:100%">
+											<input type="text" name="mobile" id="mobile" placeholder="Your Mobile*" style="width:66%">
+											<button type="button" class="fv-btn mobile_sent_otp hieght_60px" onclick="mobile_sent_otp()">Send OTP</button>
+
+											<input type="text" id="mobile_otp" placeholder="OTP" style="width:45%" class="mobile_verify_otp">
+											<button type="button" class="fv-btn mobile_verify_otp hieght_60px" onclick="mobile_verify_otp()">Verify OTP</button>
+											<span id="mobile_otp_result"></span>
 										</div>
 										<span class="field_error" id="mobile_error"></span>
 									</div>
@@ -104,7 +109,7 @@ if(isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN'] == 'yes') {
 									</div>
 									
 									<div class="contact-btn">
-										<button type="button" class="fv-btn" onclick="user_regiter()">Register</button>
+										<button type="button" class="fv-btn" onclick="user_regiter()" disabled id="btn_register">Register</button>
 									</div>
 								</form>
 								<div class="form-output register_msg">
@@ -117,20 +122,131 @@ if(isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN'] == 'yes') {
 					
             </div>
         </section>
+		<input type="hidden" id="is_email_verified"/>
+		<input type="hidden" id="is_mobile_verified"/>
         <!-- End Contact Area -->
         <!-- End Banner Area -->
     </div>
     <!-- Body main wrapper end -->
 	<script>
+	// Email Functions
 		function email_sent_otp() {
-			jQuery('#email').attr('disabled',true);
-			jQuery('.email_varify_otp').show();
-			jQuery('.email_sent_otp').hide();
+			jQuery('#email_error').html('');
+			var email = jQuery('#email').val();
+			if(email == ''){
+				jQuery('#email_error').html('Please enter email id');
+			}else {
+				jQuery('.email_sent_otp').html('Please wait..');
+				jQuery('.email_sent_otp').attr('disabled',true);
+				jQuery('.email_sent_otp');
+				jQuery.ajax({
+					url:'send_otp.php',
+					type:'post',
+					data:'email='+email+'&type=email',
+					success:function(result){
+						if(result == 'done') {
+							jQuery('#email').attr('disabled',true);
+							jQuery('.email_verify_otp').show();
+							jQuery('.email_sent_otp').hide();
+						}else if(result == 'email_present'){
+							jQuery('#email_error').html('Email id already exists');
+							jQuery('.email_sent_otp').html('Send OTP');
+							jQuery('.email_sent_otp').attr('disabled',false);
+						}else {
+							jQuery('.email_sent_otp').html('Send OTP');
+							jQuery('.email_sent_otp').attr('disabled',false);
+							jQuery('#email_error').html('Please try after sometime');
+						}
+					}
+				});
+			}
+			
 		}
 		function email_verify_otp() {
-			jQuery('.email_verify_otp').hide();
-			jQuery('#email_otp_result').html('Email id verified');
+			jQuery('#email_error').html('');
+			var email_otp = jQuery('#email_otp').val();
+			if(email_otp == ''){
+				jQuery('#email_error').html('Please enter OTP');
+			}else {
+				jQuery.ajax({
+					url:'check_otp.php',
+					type:'post',
+					data:'email='+email_otp+'type=email',
+					success:function(result){
+						if(result == 'done') {
+							jQuery('.email_verify_otp').hide();
+							jQuery('#email_otp_result').html('Email id verified');
+							jQuery('#is_email_verified').val('1');
+							if(jQuery('#is_mobile_verified').val('1')){
+								jQuery('#btn_register').attr('disabled',false);
+							}
+						}else{
+							jQuery('#email_error').html('Please enter valid OTP');
+						}
+					}
+				});
+			}
 		}
+	// Email Functions End
+	// Mobile Functions
+		function mobile_sent_otp() {
+			jQuery('#mobile_error').html('');
+			var mobile = jQuery('#mobile').val();
+			if(mobile == ''){
+				jQuery('#mobile_error').html('Please enter mobile number');
+			}else {
+				jQuery('.mobile_sent_otp').html('Please wait..');
+				jQuery('.mobile_sent_otp').attr('disabled',true);
+				jQuery('.mobile_sent_otp');
+				jQuery.ajax({
+					url:'send_otp.php',
+					type:'post',
+					data:'mobile='+mobile+'&type=mobile',
+					success:function(result){
+						if(result == 'done') {
+							jQuery('#mobile').attr('disabled',true);
+							jQuery('.mobile_verify_otp').show();
+							jQuery('.mobile_sent_otp').hide();
+						}else if(result == 'email_present'){
+							jQuery('#mobile_error').html('Mmobile number already exists');
+							jQuery('.mobile_sent_otp').html('Send OTP');
+							jQuery('.mobile_sent_otp').attr('disabled',false);
+						}else {
+							jQuery('.mobile_sent_otp').html('Send OTP');
+							jQuery('.mobile_sent_otp').attr('disabled',false);
+							jQuery('#mobile_error').html('Please try after sometime');
+						}
+					}
+				});
+			}
+			
+		}
+		function mobile_verify_otp() {
+			jQuery('#mobile_error').html('');
+			var mobile_otp = jQuery('#mobile_otp').val();
+			if(mobile_otp == ''){
+				jQuery('#mobile_error').html('Please enter mobile number');
+			}else {
+				jQuery.ajax({
+					url:'check_otp.php',
+					type:'post',
+					data:'mobile='+mobile_otp+'type=mobile',
+					success:function(result){
+						if(result == 'done') {
+							jQuery('.mobile_verify_otp').hide();
+							jQuery('#mobile_otp_result').html('Mobile number verified');
+							jQuery('#is_mobile_verified').val('1');
+							if(jQuery('#is_email_verified').val('1')){
+								jQuery('#btn_register').attr('disabled',false);
+							}
+						}else {
+							jQuery('#mobile_error').html('Please enter valid OTP');
+						}
+					}
+				});
+			}
+		}
+	// mobile Functions End
 	</script>
 
 <?php require 'footer.php'; ?>

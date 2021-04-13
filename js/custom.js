@@ -54,6 +54,9 @@ function user_regiter() {
                 if(result == 'email_present'){
                     jQuery('#email_error').html('Email Already Exists');
                 }
+                if(result == 'mobile_present'){
+                    jQuery('#mobile_error').html('Mobile Already Exists');
+                }
                 if(result == 'insert'){
                     jQuery('.register_msg p').html('Thank You for Registration');
                 }
