@@ -18,7 +18,7 @@
         }
     }
 
-    function get_product($conn,$limit = '',$cat_id = '',$product_id= '',$search_str = '',$sort_order='',$is_best_seller = '') {
+    function get_product($conn,$limit = '',$cat_id = '',$product_id= '',$search_str = '',$sort_order='',$is_best_seller = '',$sub_categories='') {
         $sql = "select product.*,categories from product,categories where product.status=1";
         if($cat_id != ''){
             $sql.=" and product.categories_id=$cat_id ";
@@ -26,6 +26,10 @@
 
         if($product_id != ''){
             $sql.=" and product.id=$product_id ";
+        }
+
+        if($sub_categories != ''){
+            $sql.=" and product.sub_categories_id=$sub_categories ";
         }
 
         if($is_best_seller != ''){

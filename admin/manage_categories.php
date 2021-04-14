@@ -2,7 +2,7 @@
  require 'header.php';
  $categories = '';
  $msg = '';
-
+ $sub_categories = '';
  if(isset($_GET['id']) && $_GET['id'] != '') {
     $id = get_safe_value($conn,$_GET['id']);
     $res = mysqli_query($conn,"select * from categories where id='$id'");
@@ -10,6 +10,7 @@
     if($check > 0) {
         $row = mysqli_fetch_assoc($res);
         $categories = $row['categories'];
+        $sub_categories = $row['categories'];
     }else{
         header('location:categories.php');
         die();
@@ -29,10 +30,10 @@ if(isset($_POST['submit'])) {
             if($id == $getData['id']){
 
             }else{
-                $msg = "Categories Already Exists";
+                $msg = "categories Already Exists";
             }
         }else{
-            $msg = "Categories Already Exists";
+            $msg = "categories Already Exists";
         }
      }
 

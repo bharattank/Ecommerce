@@ -1,6 +1,12 @@
 <?php require 'header.php'; 
 $cat_id = mysqli_real_escape_string($conn,$_GET['id']);
 
+$sub_categories = '';
+if(isset($_GET['sub_categories'])){
+    $sub_categories = mysqli_real_escape_string($conn,$_GET['sub_categories']);
+}
+
+
 $price_high_selected='';
 $price_low_selected='';
 $new_selected='';
@@ -28,7 +34,7 @@ if(isset($_GET['sort'])){
 }
  
 if($cat_id > 0) {
-    $get_product = get_product($conn,'',$cat_id,'','',$sort_order);
+    $get_product = get_product($conn,'',$cat_id,'','',$sort_order,'',$sub_categories);
 }else {
     ?>
     <script>
