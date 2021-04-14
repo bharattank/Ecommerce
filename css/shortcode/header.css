@@ -267,7 +267,7 @@ nav.off__canvars--menu ul li ul li a:hover {
     padding-right: 20px;
     position: relative;
 }
-.header__account a::before {
+/* .header__account a::before {
     background: #898989 none repeat scroll 0 0;
     content: "";
     height: 15px;
@@ -275,7 +275,7 @@ nav.off__canvars--menu ul li ul li a:hover {
     right: 0;
     top: 0;
     width: 2px;
-}
+} */
 
 
 

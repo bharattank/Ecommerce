@@ -15,7 +15,7 @@
                                         <h2>collection 2018</h2>
                                         <h1>NICE CHAIR</h1>
                                         <div class="cr__btn">
-                                            <a href="cart.html">Shop Now</a>
+                                            <a href="cart.php">Shop Now</a>
                                         </div>
                                     </div>
                                 </div>

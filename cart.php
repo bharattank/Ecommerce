@@ -56,6 +56,8 @@ if(!isset($_SESSION['cart']) && empty($_SESSION['cart'])) {
                                             $price = $productArr['0']['price'];
                                             $image = $productArr['0']['image'];
                                             $qty = $val['qty'];
+                                            $total = (int)$qty * (int)$price;
+                                            
                                     ?>
                                         <tr>
                                             <td class="product-thumbnail"><a href="#"><img src="./media/product/<?php echo $image ?>" alt="product img" /></a></td>
@@ -69,7 +71,7 @@ if(!isset($_SESSION['cart']) && empty($_SESSION['cart'])) {
                                             <td class="product-quantity"><input type="number" id="<?php echo $key?>qty" value="<?php echo $qty ?>" />
                                             <a href="javascript:void(0)" onclick="manage_cart('<?php echo $key?>','update')">Update</a>
                                             </td>
-                                            <td class="product-subtotal"><?php echo $qty*$price ?></td>
+                                            <td class="product-subtotal"><?php echo $total ?></td>
                                             <td class="product-remove"><a href="javascript:void(0)" onclick="manage_cart('<?php echo $key?>','remove')"><i class="icon-trash icons"></i></a></td>
                                         </tr>
                                         <?php } ?>

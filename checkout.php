@@ -12,7 +12,8 @@ foreach($_SESSION['cart'] as $key=>$val) {
     $productArr = get_product($conn,'','',$key);
     $price = $productArr['0']['price'];
     $qty = $val['qty'];
-    $cart_total = $cart_total+($price*$qty);
+    $total = (int)$price*(int)$qty;
+    $cart_total = $cart_total+($total);
 }
 
 if(isset($_POST['submit'])) {
@@ -265,7 +266,8 @@ if(isset($_POST['submit'])) {
                                             $price = $productArr['0']['price'];
                                             $image = $productArr['0']['image'];
                                             $qty = $val['qty'];
-                                            $cart_total = $cart_total+($price*$qty);
+                                            $total = (int)$price*(int)$qty;
+                                            $cart_total = $cart_total+( $total);
                                     ?>
                                 <div class="single-item">
                                     <div class="single-item__thumb">
@@ -273,7 +275,7 @@ if(isset($_POST['submit'])) {
                                     </div>
                                     <div class="single-item__content">
                                         <a href="#"><?php echo $pname ?></a>
-                                        <span class="price"><?php echo $price*$qty ?></span>
+                                        <span class="price"><?php echo $total ?></span>
                                     </div>
                                     <div class="single-item__remove">
                                     <a href="javascript:void(0)" onclick="manage_cart('<?php echo $key?>','remove')"><i class="zmdi zmdi-delete"></i></a>

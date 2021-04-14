@@ -19,7 +19,7 @@ if(isset($_SESSION['USER_LOGIN'])) {
     }
 
     $wishlist_count=mysqli_num_rows(mysqli_query($conn,"select product.name,product.image,product.price,product.mrp,wishlist.id from 
-    product,wishlist where wishlist.product_id=product_id and wishlist.user_id='$uid'"));
+    product,wishlist where wishlist.product_id=product.id and wishlist.user_id='$uid'"));
 }
 
 $script_name = $_SERVER['SCRIPT_NAME'];
@@ -72,7 +72,8 @@ if($mypage == 'contact.php'){
     <link rel="stylesheet" href="css/responsive.css">
     <!-- User style -->
     <link rel="stylesheet" href="css/custom.css">
-    <!-- Smooth Image -->
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="./css/font-awesome/all.css">
 
 
     <!-- Modernizr JS -->
@@ -136,15 +137,35 @@ if($mypage == 'contact.php'){
                             <div class="col-md-3 col-lg-4 col-sm-4 col-xs-4">
                                 <div class="header__right">
                                     <div class="header__search search search__open">
-                                        <a href="#"><i class="icon-magnifier icons"></i></a>
+                                        <a href="#" title="Search"><i class="icon-magnifier icons"></i></a>
                                     </div>
                                     <div class="header__account">
                                         <?php
                                         if(isset($_SESSION['USER_LOGIN'])) {
-                                           echo '<a href="logout.php"><i class="icon-logout icons"></i></a> <a href="my_order.php">
-                                           <i class="icon-bag icons"></i></a>';
+                                            ?>
+                                            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                             <span class="navbar-toggler-icon"></span>
+                                           </button>
+                                           <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                             <ul class="navbar-nav mr-auto">
+                                               <li class="nav-item dropdown">
+                                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                 <i class="fas fa-user-circle"></i>Account
+                                                 </a>
+                                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                   <a class="dropdown-item mlorder column" href="my_order.php"><i class="far fa-bags-shopping"></i>&nbsp;Order</a>
+                                                   <a class="dropdown-item mlprofile column" href="profile.php"><i class="fas fa-user-alt"></i>&nbsp;Profile</a>
+                                                   <div class="dropdown-divider"></div>
+                                                   <a class="dropdown-item mllogout column" href="logout.php"><i class="icon-logout icons"></i>&nbsp;Logout</a>
+                                                 </div>
+                                               </li>
+                                             </ul>
+                                           </div>
+                                         </nav>
+                                         <?php
                                         }else{
-                                           echo '<a href="login.php"><i class="icon-user icons"></i></a>';
+                                           echo '<a href="login.php" title="Register/Login"><i class="icon-user icons"></i></a>';
                                         }
                                         ?>  
                                     </div>
@@ -152,10 +173,10 @@ if($mypage == 'contact.php'){
                                         <?php
                                         if(isset($_SESSION['USER_ID'])){
                                         ?>
-                                        <a href="wishlist.php" class="colam"><i class="icon-heart icons "></i></a>
+                                        <a href="wishlist.php" title="Wishlist" class="column"><i class="icon-heart icons "></i></a>
                                         <a href="wishlist.php"><span class="htc__wishlist"><?php echo $wishlist_count?></span></a>&nbsp;&nbsp;&nbsp;
                                         <?php } ?>
-                                        <a href="cart.php"><i class="icon-handbag icons"></i></a>
+                                        <a href="cart.php" title="My Cart"><i class="icon-handbag icons"></i></a>
                                         <a href="cart.php"><span class="htc__qua"><?php echo $totalProduct?></span></a>
                                     </div>
                                 </div>

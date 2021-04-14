@@ -3619,3 +3619,40 @@ ul.htc__instagram__posts.owl-carousel li img {
     font-size: 20px;
     font-weight: bold;
 }
+.ct-btn.ct-anc {
+    color: #000 !important;
+    font-size: 15px;
+    font-weight: bold;
+}
+.column::before {
+    background: #898989 none repeat scroll 0 0 !important;
+    content: "" !important;
+    height: 15px !important;
+    position: absolute !important;
+    right: 106px !important;
+    top: 0px !important;
+    width: 2px !important;
+}
+.dropdown-menu {
+    left: -37px;
+}
+.dropdown-menu a::after {
+    background: #898989;
+    content: "";
+    height: 15px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    -webkit-transform: translateY(-70%);
+    transform: translateY(-70%);
+    width: 2px;
+}
+.mlorder {
+    margin-left: 42px;
+}
+.mlprofile {
+    margin-left: 38px;
+}
+.mllogout {
+    margin-left: 34px;
+}

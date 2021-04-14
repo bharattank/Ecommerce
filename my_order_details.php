@@ -34,7 +34,6 @@
                                                 <th class="product-name">Qty</th>
                                                 <th class="product-price">Price</th>
                                                 <th class="product-price">Total Price</th>
-                                                
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -47,11 +46,11 @@
                                             $total_price =$total_price+($row['qty']*$row['price']);
                                             ?>
                                             <tr>
-                                                <td class="product-name"><?php echo $row['name']?></td>
-                                                <td class="product-name"><img src="./media/product/<?php echo $row['image']?>"></td>
+                                                <td class="product-thumbnail"><?php echo $row['name']?></td>
+                                                <td class="product-thumbnail"><img src="./media/product/<?php echo $row['image']?>"></td>
                                                 <td class="product-name"><?php echo $row['qty']?></td>
-                                                <td class="product-name"><?php echo $row['price']?></td>
-                                                <td class="product-name"><?php echo $row['qty']*$row['price']?></td>
+                                                <td class="product-price"><?php echo $row['price']?></td>
+                                                <td class="product-price"><?php echo $row['qty']*$row['price']?></td>
                                                 
                                             </tr>
                                             <?php } ?>
