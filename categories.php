@@ -33,7 +33,7 @@ if(isset($_GET['sort'])){
     }
 }
  
-if($cat_id > 0 && ($sub_categories!='' && $sub_categories>0)) {
+if($cat_id > 0) {
     $get_product = get_product($conn,'',$cat_id,'','',$sort_order,'',$sub_categories);
 }else {
     ?>

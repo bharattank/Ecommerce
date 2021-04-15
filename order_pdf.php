@@ -14,6 +14,8 @@ $order_id = get_safe_value($conn,$_GET['id']);
 
 $css=file_get_contents('css/bootstrap.min.css');
 $css.=file_get_contents('style.css');
+
+
 $html ='<div class="wishlist-table table-responsive">
 <table>
     <thead>

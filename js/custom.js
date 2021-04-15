@@ -112,7 +112,12 @@ function manage_cart(pid,type) {
                 if(type=='update'  || type=='remove'){
                     window.location.href=window.location.href;
                 }
-                jQuery('.htc__qua').html(result);
+                if(result == 'not_available') {
+                    alert('Qty Not Available')
+                }else {
+                    jQuery('.htc__qua').html(result);
+                }
+               
             }
         });
 }

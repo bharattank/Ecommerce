@@ -63,7 +63,14 @@ $res = mysqli_query($conn,$sql);
                                         <td><img src="../media/product/<?php echo $row['image']?>"/></td>
                                         <td><?php echo $row['mrp']?></td>
                                         <td><?php echo $row['price']?></td>
-                                        <td><?php echo $row['qty']?></td>
+                                        <td><?php echo $row['qty']?>
+                                        </br>
+                                        <?php
+                                        $productSoldQtybyProductId = productSoldQtybyProductId($conn,$row['id']);
+                                        $pending_qty =  $row['qty'] - $productSoldQtybyProductId;
+                                        ?>
+                                        Pending Qty :  <?php echo $pending_qty ?>
+                                        </td>
                                         <td>
                                             <?php
                                             if($row['status'] == 1) {

@@ -64,4 +64,18 @@
         $sql_wishlist = "insert into `wishlist`(user_id,product_id,added_on) values ('$uid','$pid','$added_on')";
         mysqli_query($conn,$sql_wishlist);
     }
+
+    function productSoldQtybyProductId($conn,$pid) {
+        $sql = "select sum(order_detail.qty) as qty from order_detail,`order` where `order`.id=order_detail.order_id and order_detail.product_id=$pid and `order`.order_status!=4 and ((`order`.payment_type='PayU' and `order`.payment_status='success') or (`order`.payment_type='cod' and `order`.payment_status!=''))";
+        $res = mysqli_query($conn,$sql);
+        $row  = mysqli_fetch_assoc($res);
+        return $row['qty'];
+    }
+
+    function productQty($conn,$pid) {
+        $sql = "select qty from product where id='$pid'";
+        $res = mysqli_query($conn,$sql);
+        $row  = mysqli_fetch_assoc($res);
+        return $row['qty'];
+    }
 ?>
