@@ -113,8 +113,6 @@ if($mypage == 'contact.php'){
                                                         $sub_cat_res = mysqli_query($conn,"select * from sub_categories where status='1' and categories_id='$cat_id'");
                                                         if(mysqli_num_rows($sub_cat_res) > 0) {
                                                             ?>
-                                                        
-                                                        
                                                         <ul class="dropdown">
                                                             <?php 
                                                                 while($sub_cat_rows = mysqli_fetch_assoc($sub_cat_res)) {
@@ -170,8 +168,8 @@ if($mypage == 'contact.php'){
                                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                              <ul class="navbar-nav mr-auto">
                                                <li class="nav-item dropdown">
-                                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                 <i class="fas fa-user-circle"></i>Account
+                                                 <a class="nav-link dropdown-toggle text-capitalize" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                 <i class="fas fa-user-circle"></i><?php echo $_SESSION['USER_NAME'] ?>
                                                  </a>
                                                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                                    <a class="dropdown-item mlorder column" href="my_order.php"><i class="far fa-bags-shopping"></i>&nbsp;Order</a>

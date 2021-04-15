@@ -30,6 +30,7 @@ $order_id = get_safe_value($conn,$_GET['id']);
                                         <tbody>
                                         <?php 
                                         $res = mysqli_query($conn,"select distinct(order_detail.id) ,order_detail.*,product.name,product.image,`order`.address,`order`.city,`order`.pincode from `order_detail`,product,`order` where order_detail.order_id='$order_id' and order_detail.product_id=product.id");
+                                        $total_price = 0;
                                         while($row = mysqli_fetch_assoc($res)){
                                             $address = $row['address'];
                                             $city = $row['city'];

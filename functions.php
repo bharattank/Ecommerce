@@ -18,8 +18,8 @@
         }
     }
 
-    function get_product($conn,$limit = '',$cat_id = '',$product_id= '',$search_str = '',$sort_order='',$is_best_seller = '',$sub_categories='') {
-        $sql = "select product.*,categories from product,categories where product.status=1";
+    function get_product($conn,$limit = '',$cat_id = '',$product_id= '',$search_str = '',$sort_order='',$is_best_seller = '',$sub_categories = '') {
+        $sql = "select product.*,categories.categories from product,categories where product.status=1";
         if($cat_id != ''){
             $sql.=" and product.categories_id=$cat_id ";
         }

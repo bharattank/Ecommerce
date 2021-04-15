@@ -2,7 +2,7 @@
  include 'header.php'; 
  $order_id = get_safe_value($conn,$_GET['id']);
 ?>
-<div class="ht__bradcaump__area" style="background: rgba(0, 0, 0, 0) url(assets/images/bg/4.jpg) no-repeat scroll center center / cover ;">
+<div class="ht__bradcaump__area" style="background: rgba(0, 0, 0, 0) url(images/bg/4.jpg) no-repeat scroll center center / cover ;">
             <div class="ht__bradcaump__wrap">
                 <div class="container">
                     <div class="row">
@@ -11,7 +11,7 @@
                                 <nav class="bradcaump-inner">
                                   <a class="breadcrumb-item" href="index.html">Home</a>
                                   <span class="brd-separetor"><i class="zmdi zmdi-chevron-right"></i></span>
-                                  <span class="breadcrumb-item active">Thank You</span>
+                                  <span class="breadcrumb-item active">My Order Details</span>
                                 </nav>
                             </div>
                         </div>
