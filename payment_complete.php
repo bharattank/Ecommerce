@@ -34,6 +34,8 @@ if($sentHashString != $posted_hash){
 <?php
 }else{
 	mysqli_query($con,"update `order` set payment_status='$status', mihpayid='$pay_id' where txnid='$txnid'");	
+	$order_datail = mysqli_fetch_assoc(mysqli_query($conn,"select id from `order` where txnid='$txnid'"));
+	sentInvoice($conn,$order_detail['id']);
 	?>
         <script>
             window.location.href="thank_you.php";

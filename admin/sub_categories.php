@@ -11,13 +11,13 @@ if(isset($_GET['type']) && $_GET['type'] != '') {
          }else{
             $status = '0';
         }
-        $update_status_sql = "update categories set status = '$status' where id='$id'";
+        $update_status_sql = "update sub_categories set status = '$status' where id='$id'";
         mysqli_query($conn,$update_status_sql);
     }
 
     if($type=='delete'){
         $id = get_safe_value($conn,$_GET['id']);
-       $delete_sql ="delete from categories where id='$id'";
+       $delete_sql ="delete from sub_categories where id='$id'";
        mysqli_query($conn,$delete_sql);
     }
 }
@@ -32,7 +32,7 @@ $res = mysqli_query($conn,$sql);
                 <div class="card">
                     <div class="card-body">
                         <h4 class="box-title">Sub Categories</h4>
-                        <button class="btn btn-info ct-btn"><a href="manage_sub_categories.php">Add Sub Categories</a></button>
+                        <a href="manage_sub_categories.php" class="btn btn-info ct-btn">Add Sub Categories</a>
                     </div>
                     <div class="card-body--">
                         <div class="table-stats order-table ov-h">

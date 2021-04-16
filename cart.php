@@ -1,5 +1,6 @@
 <?php require 'header.php'; 
 if(!isset($_SESSION['cart']) && empty($_SESSION['cart'])) {
+    echo "Cart Empty";
     ?>
         <script>
             window.location.href="index.php";
@@ -68,7 +69,7 @@ if(!isset($_SESSION['cart']) && empty($_SESSION['cart'])) {
                                                 </ul>
                                             </td>
                                             <td class="product-price"><span class="amount"><?php echo $price ?></span></td>
-                                            <td class="product-quantity"><input type="number" id="<?php echo $key?>qty" value="<?php echo $qty ?>" />
+                                            <td class="product-quantity"><input type="number" onchange="manage_cart('<?php echo $key?>','update')" id="<?php echo $key?>qty" value="<?php echo $qty ?>" />
                                             <a href="javascript:void(0)" onclick="manage_cart('<?php echo $key?>','update')">Update</a>
                                             </td>
                                             <td class="product-subtotal"><?php echo $total ?></td>

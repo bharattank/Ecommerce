@@ -32,7 +32,7 @@ $res = mysqli_query($conn,$sql);
                 <div class="card">
                     <div class="card-body">
                         <h4 class="box-title">Categories</h4>
-                        <button class="btn btn-info ct-btn"><a href="manage_categories.php">Add Categories</a></button>
+                        <a href="manage_categories.php" class="btn btn-info ct-btn">Add Categories</a>
                     </div>
                     <div class="card-body--">
                         <div class="table-stats order-table ov-h">
